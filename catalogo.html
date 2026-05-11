@@ -309,10 +309,11 @@ function renderCatalogo(){
   }
   document.getElementById('grid').innerHTML=pp.map(function(p){
     var enCarrito=CARRITO.find(function(x){return x.cod===p.cod;});
+    var cod=JSON.stringify(p.cod);
     var stockEl=p.sa>2?'<span class="stock-ok">Disponible</span>':'<span class="stock-bajo">Últimas '+p.sa+'</span>';
     return '<div class="card">'+
-      '<div class="card-select '+(enCarrito?'sel':'')+'" onclick="toggleCarrito(''+p.cod+'')">'+(enCarrito?'✓':'+')+' </div>'+
-      '<div class="card-img" onclick="verDetalle(''+p.cod+'')"><img src="'+p.img+'" alt="'+p.nom+'" loading="lazy" onerror="this.parentNode.innerHTML='<div style=padding:40px;text-align:center;color:var(--bd2);font-size:2rem>💍</div>'"></div>'+
+      '<div class="card-select '+(enCarrito?'sel':'')+'" onclick="toggleCarrito('+cod+')">'+(enCarrito?'✓':'+')+' </div>'+
+      '<div class="card-img" onclick="verDetalle('+cod+')"><img src="'+p.img+'" alt="'+p.nom+'" loading="lazy" onerror="this.onerror=null;this.parentNode.style.cssText=\'display:flex;align-items:center;justify-content:center;font-size:2rem\';this.parentNode.innerHTML=\'💍\'"></div>'+
       '<div class="card-body">'+
         '<div class="card-cat">'+p.cat+'</div>'+
         '<div class="card-nom">'+p.nom+'</div>'+
@@ -321,12 +322,12 @@ function renderCatalogo(){
         '<div class="card-footer"><div class="card-pv">'+COP(p.pv)+'</div>'+stockEl+'</div>'+
         (enCarrito?
           '<div class="qty-row">'+
-            '<button class="qty-btn" onclick="event.stopPropagation();cambiarQty('+JSON.stringify(p.cod)+',-1)">−</button>'+
+            '<button class="qty-btn" onclick="event.stopPropagation();cambiarQty('+cod+',-1)">−</button>'+
             '<span class="qty-num" id="qty-'+p.cod+'">'+(enCarrito.qty||1)+'</span>'+
-            '<button class="qty-btn" onclick="event.stopPropagation();cambiarQty('+JSON.stringify(p.cod)+',1)">+</button>'+
-            '<button class="btn-add sel" onclick="event.stopPropagation();toggleCarrito('+JSON.stringify(p.cod)+')">✓ Quitar</button>'+
+            '<button class="qty-btn" onclick="event.stopPropagation();cambiarQty('+cod+',1)">+</button>'+
+            '<button class="btn-add sel" onclick="event.stopPropagation();toggleCarrito('+cod+')">✓ Quitar</button>'+
           '</div>':
-          '<button class="btn-add" onclick="event.stopPropagation();toggleCarrito('+JSON.stringify(p.cod)+')">+ Agregar</button>'
+          '<button class="btn-add" onclick="event.stopPropagation();toggleCarrito('+cod+')">+ Agregar</button>'
         )+
       '</div></div>';
   }).join('');
@@ -404,8 +405,8 @@ function verDetalle(cod){
       '<div class="modal-pv">'+COP(p.pv)+'</div>'+
       '<div class="modal-stock">'+stockTxt+'</div>'+
       '<div class="modal-btns">'+
-        '<button class="btn-modal-close" onclick="this.closest('.modal-bg').remove()">← Volver</button>'+
-        '<button class="btn-modal-add" id="modal-add-btn" onclick="toggleCarrito(''+p.cod+'');this.closest('.modal-bg').remove()">'+(enCarrito?'✓ Quitar del pedido':'+ Agregar al pedido')+'</button>'+
+        '<button class="btn-modal-close" onclick="this.closest(\'.modal-bg\').remove()">← Volver</button>'+
+        '<button class="btn-modal-add" id="modal-add-btn" onclick="toggleCarrito('+cod+');this.closest(\'.modal-bg\').remove()">'+( enCarrito?'✓ Quitar del pedido':'+ Agregar al pedido')+'</button>'+
       '</div>'+
     '</div>'+
   '</div>';
