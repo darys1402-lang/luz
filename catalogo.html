@@ -68,6 +68,11 @@ body{background:var(--cr);color:var(--dk);font-family:'Nunito',sans-serif;min-he
 .stock-ok{background:#E8F5E9;color:#2E7D32;font-size:9px;padding:3px 8px;border-radius:10px;font-weight:700}
 .stock-bajo{background:#FFF3E0;color:#E65100;font-size:9px;padding:3px 8px;border-radius:10px;font-weight:700}
 .btn-add{width:100%;padding:9px;background:var(--lu3);color:var(--dk);border:1.5px solid var(--bd2);border-radius:var(--r);font-family:'Nunito',sans-serif;font-size:11px;font-weight:700;cursor:pointer;transition:all .2s;letter-spacing:.5px}
+.qty-row{display:flex;align-items:center;gap:6px;margin-top:8px}
+.qty-btn{width:28px;height:28px;border-radius:50%;border:1.5px solid var(--bd2);background:var(--lu3);font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--dk);flex-shrink:0;transition:all .2s}
+.qty-btn:hover{background:var(--dk);color:var(--lu);border-color:var(--dk)}
+.qty-num{font-weight:700;font-size:15px;min-width:20px;text-align:center;color:var(--dk)}
+.qty-row .btn-add{flex:1;margin-top:0;padding:7px}
 .btn-add:hover,.btn-add.sel{background:var(--dk);color:var(--lu);border-color:var(--dk)}
 
 /* CARRITO FLOTANTE */
@@ -170,8 +175,50 @@ body{background:var(--cr);color:var(--dk);font-family:'Nunito',sans-serif;min-he
   <button class="btn-wa-bar" onclick="pedirWA()">📱 Pedir por WhatsApp</button>
 </div>
 
-<footer class="footer">
-  <p>© 2026 Luz Accesorios · Hecho con 🌸 · <a href="https://wa.me/573052071061" target="_blank">Escríbenos</a></p>
+<!-- NUESTRA ESENCIA -->
+<section style="background:var(--dk);padding:60px 24px;text-align:center">
+  <div style="max-width:680px;margin:0 auto">
+    <div style="font-size:10px;letter-spacing:3px;color:var(--lu);text-transform:uppercase;margin-bottom:12px">Nuestra esencia</div>
+    <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(1.6rem,4vw,2.4rem);color:#fff;font-weight:300;line-height:1.4;margin-bottom:20px">Luz nació de una decisión <em style="color:var(--lu);font-style:italic">valiente</em></h2>
+    <div style="width:40px;height:1px;background:var(--lu);margin:0 auto 24px"></div>
+    <p style="color:#B8A090;font-size:.95rem;line-height:1.8;margin-bottom:16px">Con una pequeña inversión y muchas ganas, di el primer paso. Sabía que no quería quedarme en lo básico, quería construir una marca con identidad, que creciera conmigo.</p>
+    <p style="color:#B8A090;font-size:.95rem;line-height:1.8;margin-bottom:16px">Hoy Luz tiene un espacio físico, pero esto no es el final… es solo parte del camino. Porque este sueño sigue expandiéndose, buscando nuevas formas, nuevos espacios y nuevas maneras de llegar a más personas.</p>
+    <p style="color:var(--lu);font-size:1rem;line-height:1.8;font-style:italic">Luz es eso: hacerlo posible con lo que tienes, mientras construyes lo que sueñas. ✨</p>
+  </div>
+</section>
+
+<!-- REDES SOCIALES -->
+<section style="background:var(--lu4);padding:40px 24px;text-align:center;border-top:1px solid var(--bd)">
+  <div style="max-width:600px;margin:0 auto">
+    <div style="font-size:10px;letter-spacing:3px;color:var(--mid);text-transform:uppercase;margin-bottom:20px">Síguenos</div>
+    <div style="display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin-bottom:24px">
+      <a href="https://instagram.com/luz_accesorios_baq" target="_blank" style="display:flex;flex-direction:column;align-items:center;gap:6px;text-decoration:none;color:var(--dk);padding:16px 20px;background:#fff;border-radius:var(--r2);box-shadow:var(--sh);min-width:90px;transition:transform .2s" onmouseover="this.style.transform='translateY(-3px)'" onmouseout="this.style.transform='none'">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="url(#ig)" stroke-width="1.8" stroke-linecap="round"><defs><linearGradient id="ig" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stop-color="#f09433"/><stop offset="25%" stop-color="#e6683c"/><stop offset="50%" stop-color="#dc2743"/><stop offset="75%" stop-color="#cc2366"/><stop offset="100%" stop-color="#bc1888"/></linearGradient></defs><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#dc2743" stroke="none"/></svg>
+        <span style="font-size:10px;font-weight:600">Instagram</span>
+        <span style="font-size:9px;color:var(--mid)">@luz_accesorios_baq</span>
+      </a>
+      <a href="https://facebook.com/luzaccesoriosbaq" target="_blank" style="display:flex;flex-direction:column;align-items:center;gap:6px;text-decoration:none;color:var(--dk);padding:16px 20px;background:#fff;border-radius:var(--r2);box-shadow:var(--sh);min-width:90px;transition:transform .2s" onmouseover="this.style.transform='translateY(-3px)'" onmouseout="this.style.transform='none'">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        <span style="font-size:10px;font-weight:600">Facebook</span>
+        <span style="font-size:9px;color:var(--mid)">luzaccesoriosbaq</span>
+      </a>
+      <a href="https://tiktok.com/@luz_accesorios_baq" target="_blank" style="display:flex;flex-direction:column;align-items:center;gap:6px;text-decoration:none;color:var(--dk);padding:16px 20px;background:#fff;border-radius:var(--r2);box-shadow:var(--sh);min-width:90px;transition:transform .2s" onmouseover="this.style.transform='translateY(-3px)'" onmouseout="this.style.transform='none'">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="var(--dk)"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.74a4.85 4.85 0 01-1.01-.05z"/></svg>
+        <span style="font-size:10px;font-weight:600">TikTok</span>
+        <span style="font-size:9px;color:var(--mid)">@luz_accesorios_baq</span>
+      </a>
+      <a href="https://wa.me/message/G2L6VE4MVM4VP1" target="_blank" style="display:flex;flex-direction:column;align-items:center;gap:6px;text-decoration:none;color:var(--dk);padding:16px 20px;background:#fff;border-radius:var(--r2);box-shadow:var(--sh);min-width:90px;transition:transform .2s" onmouseover="this.style.transform='translateY(-3px)'" onmouseout="this.style.transform='none'">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        <span style="font-size:10px;font-weight:600">WhatsApp</span>
+        <span style="font-size:9px;color:var(--mid)">Escríbenos</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer" style="padding-bottom:20px">
+  <p style="margin-bottom:6px">© 2026 Luz Accesorios</p>
+  <p style="font-size:10px;color:var(--bd2);letter-spacing:2px">BY DARYLUZ ✨</p>
 </footer>
 
 <script>
@@ -194,7 +241,6 @@ async function cargar(){
     var invR=await sheetGet('INVENTARIO!A2:S');
     var refR=await sheetGet('REFERENCIAS!A2:F');
     var imgMap={};
-    var noImg=[];
     // Process REFERENCIAS - try multiple column combinations
     refR.forEach(function(r){
       // Try col B(1) as COD, col D(3) as IMG
@@ -204,30 +250,16 @@ async function cargar(){
       if(!cod)return;
       function driveThumb(url){
         if(!url)return '';
-        url=url.trim();
-        // Handle various Google Drive URL formats
-        if(url.includes('drive.google.com')||url.includes('docs.google.com')){
-          // Format: /d/FILE_ID/ or /d/FILE_ID
-          var m=url.match(/\/d\/([a-zA-Z0-9_-]{10,})/);
-          if(!m) m=url.match(/id=([a-zA-Z0-9_-]{10,})/);
-          if(!m) m=url.match(/\/file\/d\/([a-zA-Z0-9_-]{10,})/);
-          if(!m) m=url.match(/open\?id=([a-zA-Z0-9_-]{10,})/);
-          if(m)return 'https://lh3.googleusercontent.com/d/'+m[1]+'=w500';
+        if(url.includes('drive.google.com')){
+          var m=url.match(/\/d\/([^/?]+)/)||url.match(/id=([^&]+)/);
+          if(m)return 'https://drive.google.com/thumbnail?id='+m[1]+'&sz=w500';
         }
-        // If it's already a direct image URL
-        if(url.match(/^https?:\/\/.+\.(jpg|jpeg|png|gif|webp|bmp)/i))return url;
-        // If it's any http URL, try it
         if(url.startsWith('http'))return url;
-        // If it looks like just a Drive file ID (long alphanumeric string)
-        if(url.match(/^[a-zA-Z0-9_-]{25,}$/))return 'https://lh3.googleusercontent.com/d/'+url+'=w500';
         return '';
       }
       var thumb=driveThumb(img);
       if(thumb){imgMap[cod]={img:thumb,desc:desc};}
-      else{noImg.push({cod:cod,rawUrl:img});}
     });
-    console.log('📦 imgMap codes:', Object.keys(imgMap).length, Object.keys(imgMap).slice(0,5));
-    console.log('❌ Sin imagen válida:', noImg.slice(0,5));
     PRODS=[];
     invR.forEach(function(r){
       var cod=String(r[1]||'').trim(),nom=String(r[4]||'').trim();
@@ -243,7 +275,6 @@ async function cargar(){
       if(sa<=0||!pv||!img)return;
       PRODS.push({cod:cod,nom:nom,cat:cat,pv:pv,sa:Math.round(sa),desc:desc||imgDesc,img:img});
     });
-    console.log('✅ Productos con foto y stock:', PRODS.length, PRODS.slice(0,3).map(p=>({cod:p.cod,img:p.img.substring(0,60)})));
     var cats=[...new Set(PRODS.map(function(p){return p.cat;}))].filter(Boolean).sort();
     var pillsEl=document.getElementById('cat-pills');
     var searchWrap=pillsEl.querySelector('.search-wrap');
@@ -282,17 +313,24 @@ function renderCatalogo(){
   document.getElementById('grid').innerHTML=pp.map(function(p){
     var enCarrito=CARRITO.find(function(x){return x.cod===p.cod;});
     var stockEl=p.sa>2?'<span class="stock-ok">Disponible</span>':'<span class="stock-bajo">Últimas '+p.sa+'</span>';
-    var cod=p.cod;
     return '<div class="card">'+
-      '<div class="card-select '+(enCarrito?'sel':'')+'" onclick="toggleCarrito(\''+cod+'\')">'+(enCarrito?'✓':'+')+' </div>'+
-      '<div class="card-img" onclick="verDetalle(\''+cod+'\')"><img src="'+p.img+'" alt="'+p.nom+'" loading="lazy" onerror="this.onerror=null;this.parentNode.style.cssText=\'display:flex;align-items:center;justify-content:center;font-size:3rem\';this.parentNode.innerHTML=\'💍\'"></div>'+
+      '<div class="card-select '+(enCarrito?'sel':'')+'" onclick="toggleCarrito(''+p.cod+'')">'+(enCarrito?'✓':'+')+' </div>'+
+      '<div class="card-img" onclick="verDetalle(''+p.cod+'')"><img src="'+p.img+'" alt="'+p.nom+'" loading="lazy" onerror="this.parentNode.innerHTML='<div style=padding:40px;text-align:center;color:var(--bd2);font-size:2rem>💍</div>'"></div>'+
       '<div class="card-body">'+
         '<div class="card-cat">'+p.cat+'</div>'+
         '<div class="card-nom">'+p.nom+'</div>'+
-        '<div class="card-cod">'+cod+'</div>'+
+        '<div class="card-cod">'+p.cod+'</div>'+
         (p.desc?'<div class="card-desc">'+p.desc+'</div>':'')+
         '<div class="card-footer"><div class="card-pv">'+COP(p.pv)+'</div>'+stockEl+'</div>'+
-        '<button class="btn-add '+(enCarrito?'sel':'')+'" onclick="toggleCarrito(\''+cod+'\')">'+(enCarrito?'✓ Agregado':'+ Agregar al pedido')+'</button>'+
+        (enCarrito?
+          '<div class="qty-row">'+
+            '<button class="qty-btn" onclick="event.stopPropagation();cambiarQty('+JSON.stringify(p.cod)+',-1)">−</button>'+
+            '<span class="qty-num" id="qty-'+p.cod+'">'+(enCarrito.qty||1)+'</span>'+
+            '<button class="qty-btn" onclick="event.stopPropagation();cambiarQty('+JSON.stringify(p.cod)+',1)">+</button>'+
+            '<button class="btn-add sel" onclick="event.stopPropagation();toggleCarrito('+JSON.stringify(p.cod)+')">✓ Quitar</button>'+
+          '</div>':
+          '<button class="btn-add" onclick="event.stopPropagation();toggleCarrito('+JSON.stringify(p.cod)+')">+ Agregar</button>'
+        )+
       '</div></div>';
   }).join('');
 }
@@ -302,7 +340,7 @@ function toggleCarrito(cod){
   if(!p)return;
   var idx=CARRITO.findIndex(function(x){return x.cod===cod;});
   if(idx>=0)CARRITO.splice(idx,1);
-  else CARRITO.push(p);
+  else CARRITO.push(Object.assign({},p,{qty:1}));
   actualizarCarrito();
   renderCatalogo();
 }
@@ -311,19 +349,40 @@ function actualizarCarrito(){
   var n=CARRITO.length;
   document.getElementById('cart-count').textContent=n;
   document.getElementById('cart-bar').classList.toggle('show',n>0);
-  document.getElementById('cart-bar-txt').textContent=n+' referencia'+(n!==1?'s':'')+' seleccionada'+(n!==1?'s':'');
+  var tot=CARRITO.reduce(function(s,p){return s+(p.pv*(p.qty||1));},0);
+  document.getElementById('cart-bar-txt').textContent=n+' referencia'+(n!==1?'s':'')+' · Total: '+COP(tot);
 }
 
 function limpiarCarrito(){
   CARRITO=[];actualizarCarrito();renderCatalogo();
 }
 
+function cambiarQty(cod, delta){
+  var item=CARRITO.find(function(x){return x.cod===cod;});
+  if(!item)return;
+  item.qty=(item.qty||1)+delta;
+  if(item.qty<1){
+    CARRITO=CARRITO.filter(function(x){return x.cod!==cod;});
+    actualizarCarrito();
+    renderCatalogo();
+    return;
+  }
+  var el=document.getElementById('qty-'+cod);
+  if(el)el.textContent=item.qty;
+  actualizarCarrito();
+}
+
 function pedirWA(){
   if(!CARRITO.length)return;
+  var total=CARRITO.reduce(function(s,p){return s+(p.pv*(p.qty||1));},0);
   var lineas=CARRITO.map(function(p,i){
-    return (i+1)+'. *'+p.nom+'*\n   Código: '+p.cod+'\n   Precio: '+COP(p.pv);
+    var qty=p.qty||1;
+    return (i+1)+'. *'+p.nom+'*\n   Código: '+p.cod+'\n   Cantidad: '+qty+'\n   Precio c/u: '+COP(p.pv)+(qty>1?'\n   Subtotal: '+COP(p.pv*qty):'');
   });
-  var msg='Hola Luz Accesorios! 💍 Me gustaría pedir:\n\n'+lineas.join('\n\n')+'\n\n¿Están disponibles? 🌸';
+  var msg='Hola Luz Accesorios! 💍\n\nMe gustaría pedir:\n\n'+lineas.join('\n\n')+
+    '\n\n💰 *Total: '+COP(total)+'*'+
+    '\n\nVer catálogo: https://luzaccesorios.github.io/luz/catalogo.html'+
+    '\n\n¿Están disponibles? 🌸';
   window.open('https://wa.me/'+WA_NUM+'?text='+encodeURIComponent(msg),'_blank');
 }
 
@@ -348,8 +407,8 @@ function verDetalle(cod){
       '<div class="modal-pv">'+COP(p.pv)+'</div>'+
       '<div class="modal-stock">'+stockTxt+'</div>'+
       '<div class="modal-btns">'+
-        '<button class="btn-modal-close" onclick="this.closest(\'.modal-bg\').remove()">← Volver</button>'+
-        '<button class="btn-modal-add" id="modal-add-btn" onclick="toggleCarrito(\''+p.cod+'\');this.closest(\'.modal-bg\').remove()">'+(enCarrito?'✓ Quitar del pedido':'+ Agregar al pedido')+'</button>'+
+        '<button class="btn-modal-close" onclick="this.closest('.modal-bg').remove()">← Volver</button>'+
+        '<button class="btn-modal-add" id="modal-add-btn" onclick="toggleCarrito(''+p.cod+'');this.closest('.modal-bg').remove()">'+(enCarrito?'✓ Quitar del pedido':'+ Agregar al pedido')+'</button>'+
       '</div>'+
     '</div>'+
   '</div>';
