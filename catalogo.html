@@ -406,7 +406,7 @@ function verDetalle(cod){
       '<div class="modal-stock">'+stockTxt+'</div>'+
       '<div class="modal-btns">'+
         '<button class="btn-modal-close" onclick="this.closest(\'.modal-bg\').remove()">← Volver</button>'+
-        '<button class="btn-modal-add" id="modal-add-btn" onclick="toggleCarrito('+cod+');this.closest(\'.modal-bg\').remove()">'+( enCarrito?'✓ Quitar del pedido':'+ Agregar al pedido')+'</button>'+
+        '<button class="btn-modal-add" id="modal-add-btn" onclick="toggleCarrito('+JSON.stringify(cod)+');this.closest(\'.modal-bg\').remove()">'+( enCarrito?'✓ Quitar del pedido':'+ Agregar al pedido')+'</button>'+
       '</div>'+
     '</div>'+
   '</div>';
