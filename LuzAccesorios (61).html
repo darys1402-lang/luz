@@ -903,16 +903,15 @@ function bProd(inp){
   sg.classList.add('sh');
   sg.innerHTML=res.map(function(p){return '<div class="si" onmousedown="selP(\''+p.nom.replace(/'/g,"\\'")+'\',' +(p.pv||0)+')">'+p.nom+' <span style="color:var(--lu)">'+( p.pv?COP(p.pv):'Sin precio')+'</span><span style="float:right;color:var(--warm)">'+p.sa+'uds</span></div>';}).join('');
 }
-function selP(nom,pv,cod){document.getElementById('nv-ref').value=nom;document.getElementById('nv-pv').value=pv;var ci=document.getElementById('nv-cod');if(ci)ci.value=cod||'';document.getElementById('nv-sg')?.classList.remove('sh');}
-function guardarV(){
-  const cli=(document.getElementById('nv-cli')?.value||'').trim(),pv=+document.getElementById('nv-pv')?.value||0;
-  if(!cli||!pv){toast('Cliente y precio obligatorios',1);return;}
-  const f=document.getElementById('nv-f')?.value,mes=document.getElementById('nv-mes')?.value||'';
-  const ab=+document.getElementById('nv-ab')?.value||pv,sal=Math.max(0,pv-ab);
-  const v={f:f,mes:mes,cli:cli,ref:document.getElementById('nv-ref')?.value||'',pv:pv,ab:ab,pg:document.getElementById('nv-pg')?.value||'',sal:sal,pt:document.getElementById('nv-pt')?.value||'VIRTUAL'};
-  DB.nv.unshift(v);
-  if(sal>0){const ex=DB.cart.find(function(x){return x.cli===cli;});if(ex){ex.total+=sal;ex.items.push({p:v.ref,f:v.f,s:sal});}else DB.cart.push({cli:cli,total:sal,items:[{p:v.ref,f:v.f,s:sal}]});}
-  scriptPost('venta',v);initHdr();rVentas();toast('Venta guardada en Sheets');
+function guardarVenta(d) {
+  try {
+    var h = getOrCreate('VENTAS',['FECHA','MES','NOMBRE CLIENTE','CODIGO','REF','PV','CU','FECHA DE PAGO','ABONO','FORMA DE PAGO','SALDO','PUNTO']);
+    var esCredito = String(d.pg||'').toUpperCase()==='CREDITO';
+    var abono = esCredito ? 0 : (d.ab||d.pv);
+    var saldo = esCredito ? d.pv : Math.max(0,d.pv-(d.ab||d.pv));
+    h.appendRow([d.f,d.mes,d.cli,d.cod||'',d.ref||'',d.pv,d.cu||0,'',abono,d.pg||'',saldo,d.pt||'VIRTUAL']);
+    return {ok:true};
+  } catch(e) { return {ok:false,e:e.message}; }
 }
 
 function rCarta(){
