@@ -925,14 +925,14 @@ function rCarta(){
   document.getElementById('pane-carta').innerHTML=
     añoBar('rCarta')+
     '<div class="kg"><div class="kc err"><div class="kl">Total cartera</div><div class="kv err">'+COP(tot)+'</div></div><div class="kc"><div class="kl">Clientes</div><div class="kv">'+DB.cart.length+'</div></div><div class="kc ok"><div class="kl">Recuperado hoy</div><div class="kv ok">'+COP(recHoy)+'</div></div></div>'+items+
-    '<div class="ov" id="ov-pago2"><div class="mo"><div class="mh"><h3>Registrar pago</h3><button class="xb" onclick="X(\'ov-pago2\')">x</button></div><div class="mb2"><div class="fg"><label>Cliente</label><input id="mp-cli2" readonly></div><div class="fg"><label>Saldo</label><input id="mp-sal2" readonly></div><div class="fg"><label>Abono (COP)</label><input type="number" id="mp-abo2" placeholder="0"></div></div><div class="mf"><button class="btn btn-gh" onclick="X(\'ov-pago2\')">Cancelar</button><button class="btn btn-lu" onclick="confPago2()">Registrar</button></div></div></div>';
+    '<div class="ov" id="ov-pago2"><div class="mo"><div class="mh"><h3>Registrar pago</h3><button class="xb" onclick="X(\'ov-pago2\')">x</button></div><div class="mb2"><div class="fg"><label>Cliente</label><input id="mp-cli2" readonly></div><div class="fg"><label>Saldo</label><input id="mp-sal2" readonly></div><div class="fg"><label>Abono (COP)</label><input type="number" id="mp-abo2" placeholder="0"></div><div class="fg"><label>Fecha del pago</label><input type="date" id="mp-fecha2"></div></div><div class="mf"><button class="btn btn-gh" onclick="X(\'ov-pago2\')">Cancelar</button><button class="btn btn-lu" onclick="confPago2()">Registrar</button></div></div></div>';
 }
 function aPago(cli,sal){pCliente=cli;const m=document.getElementById('ov-pago2');document.getElementById('mp-cli2').value=cli;document.getElementById('mp-sal2').value=COP(sal);document.getElementById('mp-abo2').value=sal;m.classList.add('sh');}
 function confPago2(){
   const abo=+document.getElementById('mp-abo2')?.value||0;if(!abo){toast('Ingresa el abono',1);return;}
   const c=DB.cart.find(function(x){return x.cli===pCliente;});
   if(c){c.total=Math.max(0,c.total-abo);let r=abo;(c.items||[]).forEach(function(it){if(r>0&&it.s>0){const q=Math.min(it.s,r);it.s-=q;r-=q;}});c.items=(c.items||[]).filter(function(x){return x.s>0;});if(c.total<=0)DB.cart=DB.cart.filter(function(x){return x.cli!==pCliente;});}
-  recHoy+=abo;scriptPost('pago',{cli:pCliente,abono:abo});
+  recHoy+=abo;const fechaPago=document.getElementById('mp-fecha2')?.value||new Date().toISOString().slice(0,10); scriptPost('editarPago',{cli:pCliente,abono:abo,fecha:fechaPago});
   document.getElementById('ov-pago2').classList.remove('sh');initHdr();rCarta();toast('Pago registrado - '+COP(abo));
 }
 
