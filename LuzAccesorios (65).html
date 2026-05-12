@@ -911,7 +911,11 @@ function bProd(inp){
     sg.appendChild(d);
   });
 }
-function bCli(inp){
+function bCli(inp){function toggleMedio(){
+  var tipo=document.getElementById('nv-tipo')?.value;
+  var div=document.getElementById('nv-medio-div');
+  if(div)div.style.display=tipo==='credito'?'none':'block';
+}
   var q=(inp.value||'').toLowerCase().trim();
   var sg=document.getElementById('nv-cli-sg');
   if(!q||q.length<2){if(sg)sg.classList.remove('sh');return;}
@@ -942,7 +946,7 @@ function guardarV(){
   if(!cli||!pv){toast('Cliente y precio obligatorios',1);return;}
   const f=document.getElementById('nv-f')?.value,mes=document.getElementById('nv-mes')?.value||'';
   const ab=+document.getElementById('nv-ab')?.value||pv,sal=Math.max(0,pv-ab);
-  const v={f:f,mes:mes,cli:cli,cod:document.getElementById('nv-cod')?.value||'',ref:document.getElementById('nv-ref')?.value||'',pv:pv,ab:ab,pg:document.getElementById('nv-pg')?.value||'',sal:sal,pt:document.getElementById('nv-pt')?.value||'VIRTUAL'};
+  const v={f:f,mes:mes,cli:cli,cod:document.getElementById('nv-cod')?.value||'',ref:document.getElementById('nv-ref')?.value||'',pv:pv,ab:ab,pg:document.getElementById('nv-tipo')?.value==='credito'?'CREDITO':(document.getElementById('nv-pg')?.value||''),sal:sal,pt:document.getElementById('nv-pt')?.value||'VIRTUAL'};
   DB.nv.unshift(v);
   if(sal>0){const ex=DB.cart.find(function(x){return x.cli===cli;});if(ex){ex.total+=sal;ex.items.push({p:v.ref,f:v.f,s:sal});}else DB.cart.push({cli:cli,total:sal,items:[{p:v.ref,f:v.f,s:sal}]});}
   scriptPost('venta',v);initHdr();rVentas();toast('Venta guardada en Sheets');
