@@ -892,7 +892,7 @@ function rVentas(){
     '<div style="position:relative"><div class="fg"><label>Producto</label><input id="nv-ref" placeholder="Buscar..." oninput="bProd(this)" autocomplete="off"><input type="hidden" id="nv-cod"></div><div class="sg" id="nv-sg"></div></div>'+
     '<div class="g3"><div class="fg"><label>Precio</label><input type="number" id="nv-pv" placeholder="0"></div>'+
     '<div class="fg"><label>Abono</label><input type="number" id="nv-ab" placeholder="0"></div>'+
-    '<div class="fg"><label>Pago</label><select id="nv-pg"><option>T- NEQUI</option><option>EFECTIVO</option><option>T- BANCOLOMBIA</option><option>BOLD</option><option>CREDITO</option></select></div></div>'+
+    '<div class="fg"><label>Tipo</label><select id="nv-tipo" onchange="toggleMedio()"><option value="contado">Contado</option><option value="credito">Credito</option></select></div>'+ '<div class="fg" id="nv-medio-div"><label>Medio de pago</label><select id="nv-pg"><option>NEQUI</option><option>BANCOLOMBIA</option><option>DAVIPLATA</option><option>EFECTIVO</option><option>BOLD</option></select></div></div>'+
     '<div class="brow"><button class="btn btn-lu" onclick="guardarV()">Registrar venta</button></div></div>'+nvRows;
 }
 function bProd(inp){
