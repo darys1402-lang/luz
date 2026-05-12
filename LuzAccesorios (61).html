@@ -949,6 +949,24 @@ function aPago(cli,sal){
   }
   document.getElementById('mp-fecha2').value=new Date().toISOString().slice(0,10);
   m.classList.add('sh');
+}function confPago2(){
+  const abo=+document.getElementById('mp-abo2')?.value||0;
+  if(!abo){toast('Ingresa el abono',1);return;}
+  const fechaPago=document.getElementById('mp-fecha2')?.value||new Date().toISOString().slice(0,10);
+  const refKey=document.getElementById('mp-ref2')?.value||'';
+  const c=DB.cart.find(function(x){return x.cli===pCliente;});
+  if(c){
+    c.total=Math.max(0,c.total-abo);
+    let r=abo;
+    (c.items||[]).forEach(function(it){if(r>0&&it.s>0){const q=Math.min(it.s,r);it.s-=q;r-=q;}});
+    c.items=(c.items||[]).filter(function(x){return x.s>0;});
+    if(c.total<=0)DB.cart=DB.cart.filter(function(x){return x.cli!==pCliente;});
+  }
+  recHoy+=abo;
+  scriptPost('editarPago',{cli:pCliente,abono:abo,fecha:fechaPago,refKey:refKey});
+  X('ov-pago2');
+  initHdr();rCarta();
+  toast('Pago registrado — '+COP(abo));
 }
 
 function rGastos(){
