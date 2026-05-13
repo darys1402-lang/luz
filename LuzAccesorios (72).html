@@ -888,14 +888,15 @@ function rVentas(){
     '<div class="g2"><div class="fg"><label>Fecha</label><input type="date" id="nv-f" value="'+now.toISOString().slice(0,10)+'"></div>'+
     '<div class="fg"><label>Mes</label><select id="nv-mes">'+mesOpts+'</select></div></div>'+
     '<div class="fg" style="position:relative"><label>Cliente</label><input id="nv-cli" placeholder="Nombre" oninput="bCli(this)" autocomplete="off"><div class="sg" id="nv-cli-sg"></div></div>'+
-    '<div class="fg"><label>Punto</label><select id="nv-pt"><option>VIRTUAL</option><option>ESTETICA</option><option>DEEP</option><option>FERIA</option></select></div></div>'+
+   '<div class="fg"><label>Punto</label><select id="nv-pt"><option>VIRTUAL</option><option>ESTETICA</option><option>DEEP</option><option>FERIA</option></select></div></div>'+
     '<div style="position:relative"><div class="fg"><label>Producto</label><input id="nv-ref" placeholder="Buscar..." oninput="bProd(this)" autocomplete="off"><input type="hidden" id="nv-cod"></div><div class="sg" id="nv-sg"></div></div>'+
     '<div class="g2"><div class="fg"><label>Precio</label><input type="number" id="nv-pv" placeholder="0"></div>'+
 '<div class="fg"><label>Tipo de pago</label><select id="nv-tipo" onchange="toggleMedio()"><option value="contado">Contado</option><option value="credito">Crédito</option></select></div></div>'+
-'<div id="nv-contado-div"><div class="g2">'+
+'<div id="nv-contado-div" style="display:block"><div class="g2">'+
 '<div class="fg"><label>Abono</label><input type="number" id="nv-ab" placeholder="0"></div>'+
 '<div class="fg"><label>Medio de pago</label><select id="nv-pg"><option>Nequi</option><option>Bancolombia</option><option>Daviplata</option><option>Efectivo</option><option>Bold</option></select></div></div></div>'+
     '<div class="brow"><button class="btn btn-lu" onclick="guardarV()">Registrar venta</button></div></div>'+nvRows;
+  setTimeout(function(){toggleMedio();},50);
 }
 function bProd(inp){
   var q=inp.value.toLowerCase(),sg=document.getElementById('nv-sg');
