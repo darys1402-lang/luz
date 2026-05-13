@@ -945,22 +945,41 @@ function toggleMedio(){
   if(div)div.style.display=tipo==='credito'?'none':'block';
 }
 function guardarV(){
-var _cli=(document.getElementById('nv-cli')||{value:''}).value.trim();
-var _pv=+(document.getElementById('nv-pv')||{value:0}).value||0;
-if(!_cli||!_pv){toast('Cliente y precio obligatorios',1);return;}
-var _f=(document.getElementById('nv-f')||{value:''}).value;
-var _mes=(document.getElementById('nv-mes')||{value:''}).value||'';
-var _tipoEl=document.getElementById('nv-tipo');
-var _tipo=_tipoEl?_tipoEl.options[_tipoEl.selectedIndex].value:'contado';
-var _esC=_tipo==='credito';
-var _ab=_esC?0:(+(document.getElementById('nv-ab')||{value:0}).value||_pv);
-var _sal=_esC?_pv:Math.max(0,_pv-_ab);
-var _pg=_esC?'':(document.getElementById('nv-pg')||{value:''}).value||'';
-var _tipoLabel=_esC?'Crédito':'Contado';
-var v={f:_f,mes:_mes,cli:_cli,cod:(document.getElementById('nv-cod')||{value:''}).value||'',ref:(document.getElementById('nv-ref')||{value:''}).value||'',pv:_pv,ab:_ab,pg:_pg,sal:_sal,pt:(document.getElementById('nv-pt')||{value:'VIRTUAL'}).value||'VIRTUAL',tipo:_tipoLabel};
-DB.nv.unshift(v);
-if(_sal>0){var ex=DB.cart.find(function(x){return x.cli===_cli;});if(ex){ex.total+=_sal;ex.items.push({p:v.ref,f:v.f,s:_sal});}else DB.cart.push({cli:_cli,total:_sal,items:[{p:v.ref,f:v.f,s:_sal}]});}
-scriptPost('venta',v);initHdr();rVentas();toast('Venta guardada en Sheets');
+  var _cli=(document.getElementById('nv-cli')||{value:''}).value.trim();
+  var _pv=+(document.getElementById('nv-pv')||{value:0}).value||0;
+  if(!_cli||!_pv){toast('Cliente y precio obligatorios',1);return;}
+  var _f=(document.getElementById('nv-f')||{value:''}).value;
+  var _mes=(document.getElementById('nv-mes')||{value:''}).value||'';
+  var _tipoEl=document.getElementById('nv-tipo');
+  var _tipo=_tipoEl?_tipoEl.options[_tipoEl.selectedIndex].value:'contado';
+  var _esC=_tipo==='credito';
+  var _ab=_esC ? 0 : (+(document.getElementById('nv-ab')||{value:0}).value||_pv);
+  var _sal=_esC ? _pv : Math.max(0,_pv-_ab);
+  var _pg=_esC ? '' : (document.getElementById('nv-pg')||{value:''}).value||'';
+  var _tipoLabel=_esC?'Crédito':'Contado';
+  var v={
+    f:_f,
+    mes:_mes,
+    cli:_cli,
+    cod:(document.getElementById('nv-cod')||{value:''}).value||'',
+    ref:(document.getElementById('nv-ref')||{value:''}).value||'',
+    pv:_pv,
+    ab:0,        // ← siempre 0 en crédito; en contado se llena abajo
+    pg:_pg,
+    sal:_sal,
+    pt:(document.getElementById('nv-pt')||{value:'VIRTUAL'}).value||'VIRTUAL',
+    tipo:_tipoLabel
+  };
+  if(!_esC) v.ab=_ab;  // ← solo asigna abono si es contado
+  if(_sal>0){
+    var ex=DB.cart.find(function(x){return x.cli===_cli;});
+    if(ex){ex.total+=_sal;ex.items.push({p:v.ref,f:v.f,s:_sal});}
+    else DB.cart.push({cli:_cli,total:_sal,items:[{p:v.ref,f:v.f,s:_sal}]});
+  }
+  scriptPost('venta',v);
+  initHdr();
+  rVentas();
+  toast('Venta guardada en Sheets');
 }
 
 function rCarta(){
